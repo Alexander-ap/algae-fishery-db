@@ -1,4 +1,4 @@
-/* 藻类智渔 AlgaeDB — 原生 JS，无运行时依赖（沿用博客 theme.js 的实现方式） */
+/* 智藻治渔 — 原生 JS，无运行时依赖（沿用博客 theme.js 的实现方式） */
 (function () {
   'use strict';
   var DB = window.ALGAE_DB;
