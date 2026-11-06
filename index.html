@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藻类智渔 · AlgaeDB — 智能渔业藻类数据库</title>
+<meta name="description" content="面向智能渔业的藻类数据库：氮磷吸附区域匹配、重金属离子胁迫耐受排序、微藻与大型海藻治理方案推荐。">
+<link rel="stylesheet" href="assets/css/theme.css?v=1">
+</head>
+<body>
+<div class="sea-bg" aria-hidden="true">
+  <div class="sunbeam"></div><div class="grid"></div>
+  <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
+  <div class="bubble b4"></div><div class="bubble b5"></div><div class="bubble b6"></div>
+</div>
+
+<div class="app">
+  <!-- ===================== sidebar ===================== -->
+  <aside class="sidebar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".35"/>
+        <circle cx="24" cy="24" r="14" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+        <circle cx="24" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M24 24 L38 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="24" cy="24" r="2.4" fill="currentColor"/>
+        <path d="M9 34c6-2 8-9 7-15 6 3 8 9 5 14" fill="none" stroke="currentColor" stroke-width="1.3" opacity=".7"/>
+      </svg>
+      <div><strong>藻类智渔</strong><span>ALGAEDB · SMART FISHERY</span></div>
+    </div>
+
+    <div class="nav-label">数据工作台</div>
+    <nav class="nav" id="nav">
+      <button class="nav-item active" data-view="overview"><i class="ni ni-home"></i><span>总览驾驶舱</span></button>
+      <button class="nav-item" data-view="np"><i class="ni ni-leaf"></i><span>氮磷吸附查询</span><em>01</em></button>
+      <button class="nav-item" data-view="metal"><i class="ni ni-drop"></i><span>重金属离子胁迫</span><em>02</em></button>
+      <button class="nav-item" data-view="scene"><i class="ni ni-compass"></i><span>治理方案推荐</span><em>03</em></button>
+      <button class="nav-item" data-view="sources"><i class="ni ni-db"></i><span>数据与文献源</span></button>
+    </nav>
+
+    <div class="nav-label">实时状态</div>
+    <div class="side-status">
+      <div class="status-row"><span class="dot"></span><span>数据库连接</span><b>正常</b></div>
+      <div class="status-row"><span>藻类记录</span><b id="sideNp">—</b></div>
+      <div class="status-row"><span>文献条目</span><b id="sidePapers">—</b></div>
+      <div class="status-row"><span>胁迫数据</span><b id="sideStress">—</b></div>
+      <div class="status-row"><span>更新</span><b id="sideDate">—</b></div>
+    </div>
+    <div class="side-foot">
+      <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <small>沿用 kpmark 静态站点实现方式<br>原生 JS · 零运行时依赖 · 可离线查询</small>
+    </div>
+  </aside>
+
+  <!-- ===================== main ===================== -->
+  <main class="main">
+    <header class="topbar">
+      <div class="crumb"><span>智能渔业数据中台</span><i>/</i><strong id="crumbTitle">总览驾驶舱</strong></div>
+      <div class="top-actions">
+        <span class="live"><span class="dot"></span>实时数据</span>
+        <button class="icon-btn" id="themeBtn" title="切换明暗主题" aria-label="切换明暗主题">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ---------- overview ---------- -->
+    <section class="view active" id="view-overview">
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span>海洋生物修复 · 智能渔业数据中台</div>
+          <h1>把文献里的藻类数据<br>变成<span class="brass">可查询的渔业决策</span></h1>
+          <p>以氮磷吸附实测表、重金属胁迫 EC50 数据与 26 篇原始文献为底座，
+             面向养殖尾水、近海修复与工业废水，提供区域适配、耐受排序与治理方案推荐。</p>
+          <div class="hero-cta">
+            <button class="btn primary" data-goto="np">开始区域匹配 <span>→</span></button>
+            <button class="btn ghost" data-goto="metal">查看胁迫耐受</button>
+          </div>
+        </div>
+        <div class="hero-art">
+          <svg viewBox="0 0 420 340" aria-hidden="true">
+            <defs>
+              <radialGradient id="glow"><stop offset="0" stop-color="#c9a35c" stop-opacity=".38"/><stop offset="1" stop-color="#c9a35c" stop-opacity="0"/></radialGradient>
+              <linearGradient id="leaf" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#6b5b45"/><stop offset="1" stop-color="#3d857e"/></linearGradient>
+              <linearGradient id="fish" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9ae62"/><stop offset="1" stop-color="#a8622a"/></linearGradient>
+            </defs>
+            <circle cx="210" cy="170" r="160" fill="url(#glow)"/>
+            <g fill="none" stroke="#8b7355" stroke-opacity=".22">
+              <circle cx="210" cy="170" r="52"/><circle cx="210" cy="170" r="88"/><circle cx="210" cy="170" r="126"/><circle cx="210" cy="170" r="160"/>
+            </g>
+            <path d="M210 170 L318 82" stroke="#8b7355" stroke-opacity=".65" stroke-width="1.5"/>
+            <circle cx="210" cy="170" r="4" fill="#c9a35c"/>
+            <circle cx="300" cy="96" r="3.5" fill="#a8622a"/><circle cx="132" cy="242" r="3" fill="#c9a35c"/>
+            <g opacity=".95">
+              <path d="M120 330 C110 268 128 216 150 178 C160 224 148 282 138 330Z" fill="url(#leaf)" opacity=".8"/>
+              <path d="M138 330 C142 264 168 214 202 182 C196 244 172 294 158 330Z" fill="url(#leaf)" opacity=".62"/>
+              <path d="M158 330 C176 272 206 236 246 216 C226 272 196 306 180 330Z" fill="url(#leaf)" opacity=".48"/>
+              <path d="M286 330 C286 272 302 226 326 190 C334 242 316 294 304 330Z" fill="url(#leaf)" opacity=".55"/>
+            </g>
+            <g fill="url(#fish)" opacity=".9">
+              <path d="M258 128c12-9 28-9 40 0-12 9-28 9-40 0Zm40 0 14-9v18l-14-9Z"/>
+              <path d="M286 158c9-7 21-7 30 0-9 7-21 7-30 0Zm30 0 11-7v14l-11-7Z" opacity=".7"/>
+              <path d="M116 132c8-6 19-6 27 0-8 6-19 6-27 0Zm27 0 10-6v12l-10-6Z" opacity=".55"/>
+            </g>
+            <g fill="#c9a35c" opacity=".55"><circle cx="252" cy="222" r="2.5"/><circle cx="268" cy="238" r="1.8"/><circle cx="240" cy="244" r="1.5"/><circle cx="336" cy="148" r="2"/></g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="kpi-grid" id="kpiGrid"></div>
+
+      <div class="section-head"><div><h2>三类查询能力</h2><p>从环境条件到治理决策，每一步都回指原始数据与文献</p></div></div>
+      <div class="entry-grid">
+        <button class="entry-card" data-goto="np"><span class="entry-no">01</span><div class="entry-ico">◈</div>
+          <h3>氮磷吸附 · 区域适配</h3><p>输入经纬度、温度、pH、盐度，按红藻 / 绿藻工作表筛选，并按任一 X~AS 指标降序。</p>
+          <span class="entry-link">进入查询 →</span></button>
+        <button class="entry-card" data-goto="metal"><span class="entry-no">02</span><div class="entry-ico">◉</div>
+          <h3>重金属离子胁迫</h3><p>按离子聚合相关文献、耐受性 EC50 排序与胁迫前后生理响应，覆盖红藻与绿藻。</p>
+          <span class="entry-link">进入查询 →</span></button>
+        <button class="entry-card" data-goto="scene"><span class="entry-no">03</span><div class="entry-ico">✦</div>
+          <h3>治理方案智能推荐</h3><p>输入污染程度、水体盐度与 N/P 去除诉求，直接给出大型海藻或微藻及匹配理由。</p>
+          <span class="entry-link">进入查询 →</span></button>
+      </div>
+
+      <div class="panel soft">
+        <div class="panel-head"><h3>数据口径提示</h3><span class="tag">READ ME</span></div>
+        <div class="rules" id="overviewRules"></div>
+      </div>
+    </section>
+
+    <!-- ---------- query 1 : N/P ---------- -->
+    <section class="view" id="view-np">
+      <div class="page-head"><div class="eyebrow">查询 01 · 氮磷吸附区域适配</div><h1>氮磷吸附 · 区域适配查询</h1>
+        <p>输入目标海域的环境条件，系统按地理距离与温度 / pH / 盐度偏差计算适配度，分工作表展示红藻与绿藻记录。</p></div>
+
+      <div class="panel form-panel">
+        <div class="panel-head"><h3><span class="head-ico">◈</span> 环境条件</h3><button class="btn tiny ghost" id="npDemo">载入渤海示例</button></div>
+        <div class="form-grid">
+          <label class="field"><span>经度 Longitude</span><input id="npLon" type="text" placeholder="119.33 或 119°20′E"><small>支持十进制度 / 度分格式</small></label>
+          <label class="field"><span>纬度 Latitude</span><input id="npLat" type="text" placeholder="39.70 或 39°42′N"><small>支持十进制度 / 度分格式</small></label>
+          <label class="field"><span>水温 Temperature</span><div class="unit-input"><input id="npTemp" type="number" step="0.1" placeholder="20"><em>℃</em></div></label>
+          <label class="field"><span>pH 值</span><div class="unit-input"><input id="npPh" type="number" step="0.01" placeholder="8.07"><em>pH</em></div></label>
+          <label class="field"><span>盐度 Salinity</span><div class="unit-input"><input id="npSal" type="number" step="0.1" placeholder="29.4"><em>PSU</em></div></label>
+          <label class="field"><span>匹配强度</span><select id="npStrict"><option value="40">宽松 · 更多候选</option><option value="55" selected>标准 · 推荐</option><option value="70">严格 · 高度吻合</option></select></label>
+          <label class="field"><span>排序字段（默认降序）</span><select id="npSort"></select></label>
+          <label class="field"><span>排序方向</span><select id="npDir"><option value="desc" selected>从高到低 ↓</option><option value="asc">从低到高 ↑</option></select></label>
+        </div>
+        <div class="form-foot">
+          <button class="btn primary" id="npRun">开始筛选 <span>→</span></button>
+          <button class="btn ghost" id="npReset">重置</button>
+          <span class="hint" id="npHint">共 2 张工作表 · 22 个 X~AS 指标字段</span>
+        </div>
+      </div>
+
+      <div id="npResult" class="result-area"></div>
+    </section>
+
+    <!-- ---------- query 2 : heavy metal ---------- -->
+    <section class="view" id="view-metal">
+      <div class="page-head"><div class="eyebrow">查询 02 · 重金属离子胁迫</div><h1>重金属离子胁迫</h1>
+        <p>按离子聚合相关文献、藻体耐受性排序与胁迫前后实测数据，覆盖红藻、绿藻与微藻在不同暴露条件下的响应。</p></div>
+      <div class="panel form-panel">
+        <div class="panel-head"><h3><span class="head-ico">◉</span> 选择重金属离子</h3><span class="tag" id="metalIonCount">—</span></div>
+        <div class="form-grid three">
+          <label class="field"><span>离子</span><select id="metalIon"></select></label>
+          <label class="field"><span>或输入关键词</span><input id="metalText" type="text" placeholder="如 Cd / 镉 / Cu²⁺"></label>
+          <label class="field"><span>胁迫数据分组</span><select id="metalGroup"><option value="all">全部藻类</option><option value="红藻门">仅红藻门</option><option value="绿藻门">仅绿藻门</option><option value="微藻">仅微藻</option></select></label>
+        </div>
+        <div class="form-foot"><button class="btn primary" id="metalRun">查询该离子 <span>→</span></button><span class="hint">数据来源：EC50 耐受性排序 · 胁迫前后指标数值库 · 文献汇总表 · 26 篇原文</span></div>
+      </div>
+      <div id="metalResult" class="result-area"></div>
+    </section>
+
+    <!-- ---------- query 3 : scenario ---------- -->
+    <section class="view" id="view-scene">
+      <div class="page-head"><div class="eyebrow">查询 03 · 治理方案推荐</div><h1>微藻与大型海藻 · 治理方案推荐</h1>
+        <p>输入污染情况与水体条件，系统结合应用场景对比表、耐受 EC50 与氮磷实测指标，列出可直接用于治理的藻类及逐条推荐理由。</p></div>
+      <div class="panel form-panel">
+        <div class="panel-head"><h3><span class="head-ico">✦</span> 治理场景参数</h3><button class="btn tiny ghost" id="sceneDemo">载入养殖尾水示例</button></div>
+        <div class="form-grid">
+          <label class="field"><span>重金属污染情况</span><select id="scPollution"><option value="none">无明显重金属污染</option><option value="trace">痕量 / 低浓度</option><option value="medium" selected>中等浓度</option><option value="high">高浓度（工业废水）</option></select></label>
+          <label class="field"><span>主要污染离子</span><select id="scIon"></select></label>
+          <label class="field"><span>适应水体与盐度</span><select id="scWater"><option value="sea" selected>海水 / 近海（20–35 PSU）</option><option value="brackish">河口半咸水（5–20 PSU）</option><option value="fresh">淡水（&lt; 5 PSU）</option></select></label>
+          <label class="field"><span>实测盐度（可选）</span><div class="unit-input"><input id="scSal" type="number" step="0.1" placeholder="30"><em>PSU</em></div></label>
+          <label class="field"><span>N、P 去除诉求</span><select id="scGoal"><option value="resource">移除并资源化（可收获）</option><option value="fast">快速降低浓度</option><option value="deep">深度处理至低浓度</option><option value="both">N 与 P 兼顾</option><option value="none">无特别要求</option></select></label>
+          <label class="field"><span>运行场景（可选）</span><select id="scCase"><option value="auto">自动匹配</option></select></label>
+        </div>
+        <div class="form-foot"><button class="btn primary" id="sceneRun">生成治理方案 <span>→</span></button><span class="hint">推荐理由逐条回指输入条件与对应数据</span></div>
+      </div>
+      <div id="sceneResult" class="result-area"></div>
+    </section>
+
+    <!-- ---------- sources ---------- -->
+    <section class="view" id="view-sources">
+      <div class="page-head"><div class="eyebrow">数据来源与口径</div><h1>数据与文献源</h1>
+        <p>所有查询均基于本地静态数据，源文件仅读取、未修改；原文 PDF 已随站点自托管。</p></div>
+      <div class="panel"><div class="panel-head"><h3>源数据文件</h3><span class="tag" id="srcCount">—</span></div><div class="sources-list" id="sourcesList"></div></div>
+      <div class="panel"><div class="panel-head"><h3>字段口径与文献来源编号</h3><span class="tag">EC50 说明表</span></div><div class="rules" id="notesRules"></div><div class="sources-list" id="notesRefs"></div></div>
+    </section>
+
+    <footer class="foot"><span>藻类智渔 AlgaeDB · 静态数据站点</span><span>数据源目录：C:/Users/17136/Desktop/数据</span></footer>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="data/db.js?v=1"></script>
+<script src="assets/js/app.js?v=1"></script>
+</body>
+</html>
